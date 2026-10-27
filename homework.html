@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>การบ้าน · งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="homework">
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn"><i data-lucide="menu"></i></button>
+    <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+    <div class="topbar-right">
+      <button id="archiveBtn" class="icon-btn archive-icon" title="งานที่เสร็จแล้ว">
+        <i data-lucide="archive"></i><span id="archiveCount" class="badge">0</span>
+      </button>
+      <span id="userName" class="user-chip"></span>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="section-head">
+      <h2><i data-lucide="clipboard-list"></i>การบ้าน</h2>
+      <div class="head-actions">
+        <button id="addBtn" class="add-btn" aria-label="เพิ่มงาน"><i data-lucide="plus"></i></button>
+      </div>
+    </div>
+
+    <ul id="taskList"></ul>
+    <p id="emptyMsg">ยังไม่มีงาน กด + เพื่อเพิ่มได้เลย</p>
+  </section>
+
+  <!-- หน้าต่างเพิ่มงาน -->
+  <div id="modal" class="modal hidden">
+    <form id="taskForm" class="modal-box">
+      <h3>เพิ่มงานใหม่</h3>
+
+      <label>ชื่องาน
+        <input id="taskTitle" type="text" placeholder="เช่น แบบฝึกหัดคณิต หน้า 45" required>
+      </label>
+
+      <label>วันที่สั่ง
+        <input id="assignedDate" type="date" required>
+      </label>
+
+      <label>วันที่ต้องส่ง
+        <input id="dueDate" type="date" required>
+      </label>
+
+      <label>เวลาส่ง
+        <input id="dueTime" type="time" value="23:59" required>
+      </label>
+
+      <label>คำอธิบาย (ไม่บังคับ)
+        <textarea id="taskDesc" rows="3" placeholder="รายละเอียดเพิ่มเติม..."></textarea>
+      </label>
+
+      <div class="actions">
+        <button type="button" id="cancelBtn" class="btn-ghost">ยกเลิก</button>
+        <button type="submit" class="btn-primary">บันทึก</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- หน้าต่างกล่องเก็บงาน -->
+  <div id="archiveModal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>งานที่เสร็จแล้ว</h3>
+        <button id="archiveClose" class="icon-btn" aria-label="ปิด"><i data-lucide="x"></i></button>
+      </div>
+      <ul id="archiveList"></ul>
+      <p id="archiveEmpty">ยังไม่มีงานที่เสร็จ</p>
+    </div>
+  </div>
+
+  <!-- หน้าต่างยืนยัน -->
+  <div id="confirmModal" class="modal hidden">
+    <div class="modal-box">
+      <h3 id="confirmTitle"></h3>
+      <p id="confirmText"></p>
+      <div class="actions">
+        <button type="button" id="confirmCancel" class="btn-ghost">ยกเลิก</button>
+        <button type="button" id="confirmOk" class="btn-primary"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="homework.js"></script>
+</body>
+</html>

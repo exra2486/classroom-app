@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>สิ่งที่เรียน · งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn"><i data-lucide="menu"></i></button>
+    <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+    <span id="userName" class="user-chip"></span>
+  </header>
+
+  <section class="container">
+    <div class="section-head">
+      <h2><i data-lucide="notebook-pen"></i>สิ่งที่เรียน</h2>
+      <button id="addBtn" class="add-btn" aria-label="เพิ่มบันทึก"><i data-lucide="plus"></i></button>
+    </div>
+    <ul id="noteList" class="post-list"></ul>
+    <p id="emptyMsg" class="empty">ยังไม่มีบันทึก กด + เพื่อเพิ่มได้เลย</p>
+  </section>
+
+  <div id="modal" class="modal hidden">
+    <form id="noteForm" class="modal-box">
+      <h3>เพิ่มสิ่งที่เรียน</h3>
+      <label>วิชา
+        <input id="subject" type="text" placeholder="เช่น คณิตศาสตร์" required>
+      </label>
+      <label>วันที่เรียน
+        <input id="noteDate" type="date" required>
+      </label>
+      <label>คาบที่
+        <select id="period">
+          <option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option>
+        </select>
+      </label>
+      <label>เรียนอะไรไปบ้าง
+        <textarea id="noteText" rows="4" placeholder="สรุปสิ่งที่เรียน..."></textarea>
+      </label>
+      <div class="actions">
+        <button type="button" id="cancelBtn" class="btn-ghost">ยกเลิก</button>
+        <button type="submit" class="btn-primary">บันทึก</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="notes.js"></script>
+</body>
+</html>

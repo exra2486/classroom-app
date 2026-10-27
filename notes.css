@@ -1,0 +1,18 @@
+/* ===== หน้าสิ่งที่เรียน: โทนเขียวอมฟ้า (teal) (โหลดต่อจาก style.css) ===== */
+
+/* ไอคอนหัวข้อเป็นกรอบ teal */
+.section-head h2 svg.lucide {
+  width: 36px; height: 36px; padding: 8px;
+  color: #038387; background: #e0f4f4; border-radius: 10px;
+}
+
+/* การ์ดบันทึก: แถบ teal ด้านซ้าย ชื่อวิชาสี teal เข้ม */
+.post-card { border-left: 4px solid #038387; }
+.post-card:hover { border-color: #9bd5d6; border-left-color: #038387; }
+.post-title { color: #02696d; }
+
+/* ป้ายคาบ */
+.period-chip { color: #02696d; background: #d6f0f0; }
+
+/* ปุ่มลบ: เทา แล้วเป็นแดงตอนชี้ */
+.post-actions .mini-btn:hover { color: var(--danger); background: var(--danger-bg); border-color: #f5c6ca; }

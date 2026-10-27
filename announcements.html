@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ประกาศ · งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="announcements.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn"><i data-lucide="menu"></i></button>
+    <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+    <span id="userName" class="user-chip"></span>
+  </header>
+
+  <section class="container">
+    <div class="section-head">
+      <h2><i data-lucide="megaphone"></i>ประกาศ</h2>
+      <button id="addBtn" class="add-btn" aria-label="เพิ่มประกาศ"><i data-lucide="plus"></i></button>
+    </div>
+    <ul id="postList" class="post-list"></ul>
+    <p id="emptyMsg" class="empty">ยังไม่มีประกาศ กด + เพื่อเพิ่มได้เลย</p>
+  </section>
+
+  <div id="modal" class="modal hidden">
+    <form id="postForm" class="modal-box">
+      <h3>เพิ่มประกาศ</h3>
+      <label>หัวข้อ
+        <input id="postTitle" type="text" placeholder="เช่น มีคนทำปากกาหาย" required>
+      </label>
+      <label>รายละเอียด
+        <textarea id="postText" rows="4" placeholder="เขียนรายละเอียด..."></textarea>
+      </label>
+      <div class="actions">
+        <button type="button" id="cancelBtn" class="btn-ghost">ยกเลิก</button>
+        <button type="submit" class="btn-primary">โพสต์</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="announcements.js"></script>
+</body>
+</html>

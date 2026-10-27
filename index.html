@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home">
+
+  <!-- ใส่ชื่อ (ครั้งแรกเท่านั้น) -->
+  <div id="welcome">
+    <span class="brand-mark lg"><i data-lucide="graduation-cap"></i></span>
+    <h1>ยินดีต้อนรับสู่งานห้องเรา</h1>
+    <p>ใส่ชื่อเล่นของคุณ</p>
+    <input id="nameInput" type="text" placeholder="เช่น บอส">
+    <input id="passInput" type="password" placeholder="รหัสผ่านห้อง">
+    <button id="startBtn">เริ่มใช้งาน</button>
+  </div>
+
+  <!-- หน้า Home -->
+  <div id="home" style="display:none">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn"><i data-lucide="menu"></i></button>
+      <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+      <span id="userName" class="user-chip"></span>
+    </header>
+
+    <section class="container container-wide">
+      <h2 class="greeting">สวัสดี <span id="greetName"></span></h2>
+      <p class="sub">วันนี้อยากดูอะไร?</p>
+
+      <div class="menu-grid">
+        <a class="menu-card" href="homework.html">
+          <span class="menu-icon"><i data-lucide="clipboard-list"></i></span>
+          <span class="menu-title">การบ้าน</span>
+          <span class="menu-sub" id="hwSummary">เพิ่มงานและการบ้านที่ต้องทำ</span>
+        <i class="menu-arrow" data-lucide="chevron-right"></i></a>
+        <a class="menu-card" href="announcements.html">
+          <span class="menu-icon"><i data-lucide="megaphone"></i></span>
+          <span class="menu-title">ประกาศ</span>
+          <span class="menu-sub">ข่าวและเรื่องสำคัญของห้อง</span>
+        <i class="menu-arrow" data-lucide="chevron-right"></i></a>
+        <a class="menu-card" href="notes.html">
+          <span class="menu-icon"><i data-lucide="notebook-pen"></i></span>
+          <span class="menu-title">สิ่งที่เรียน</span>
+          <span class="menu-sub">สรุปว่าเรียนอะไรไปบ้าง</span>
+        <i class="menu-arrow" data-lucide="chevron-right"></i></a>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="index.js"></script>
+</body>
+</html>
