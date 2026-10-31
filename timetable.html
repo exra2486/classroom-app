@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ตารางเรียน · งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="timetable.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="เมนู"><i data-lucide="menu"></i></button>
+    <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+    <span id="userName" class="user-chip"></span>
+  </header>
+
+  <section class="container container-wide">
+    <div class="section-head">
+      <h2><i data-lucide="calendar-days"></i>ตารางเรียน</h2>
+      <span id="nowInfo" class="now-info"></span>
+    </div>
+
+    <!-- มือถือ/แท็บเล็ตเล็ก: เลือกวัน แล้วดูทีละวัน -->
+    <div id="dayTabs" class="day-tabs" role="tablist"></div>
+    <h3 id="dayTitle" class="day-title"></h3>
+    <ul id="dayList" class="day-list"></ul>
+
+    <!-- จอกว้าง: ตารางเต็มสัปดาห์ -->
+    <div class="week-wrap"><div id="weekGrid" class="week-grid"></div></div>
+
+    <div id="legend" class="legend"></div>
+  </section>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="timetable.js"></script>
+</body>
+</html>

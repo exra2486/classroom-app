@@ -1,0 +1,59 @@
+/* ===== หน้าตารางเรียน (โหลดต่อจาก style.css) ===== */
+.section-head h2 svg.lucide { width: 36px; height: 36px; padding: 8px; color: var(--brand); background: var(--brand-soft); border-radius: 10px; }
+.now-info { padding: 4px 12px; font-size: .82rem; font-weight: 500; color: var(--brand); background: var(--brand-soft); border-radius: var(--r-pill); }
+
+/* ----- แท็บเลือกวัน (มือถือ) ----- */
+.day-tabs { display: flex; gap: 6px; }
+.day-tab { position: relative; flex: 1; padding: 10px 0; font: inherit; font-weight: 600; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); cursor: pointer; transition: all var(--ease); }
+.day-tab:hover { border-color: var(--brand); color: var(--brand); }
+.day-tab.active { color: #fff; background: var(--brand); border-color: var(--brand); }
+.day-tab.today:not(.active)::after { content: ""; position: absolute; bottom: 4px; left: 50%; width: 5px; height: 5px; background: var(--brand); border-radius: 50%; transform: translateX(-50%); }
+.day-title { margin: var(--s4) 0 var(--s2); font-size: 1rem; font-weight: 600; }
+.day-list { list-style: none; display: grid; gap: var(--s2); }
+.slot-row { display: grid; grid-template-columns: 84px 1fr; gap: var(--s3); }
+.slot-time { display: flex; flex-direction: column; align-items: flex-end; padding-top: 12px; text-align: right; }
+.slot-time strong { font-size: .9rem; font-weight: 600; }
+.slot-time span { font-size: .7rem; color: var(--subtle); line-height: 1.3; }
+
+/* ----- การ์ดวิชา (ใช้ทั้งมือถือและจอกว้าง) ----- */
+.slot-card { --g: #c8c8c8; position: relative; padding: 12px 14px; background: color-mix(in srgb, var(--g) 7%, #fff); border: 1px solid color-mix(in srgb, var(--g) 28%, #fff); border-left: 4px solid var(--g); border-radius: var(--r-md); transition: box-shadow var(--ease); }
+.slot-card:hover { box-shadow: var(--shadow-2); }
+.slot-card.lunch, .slot-card.empty { background: transparent; border: 1px dashed var(--border-strong); color: var(--subtle); box-shadow: none; }
+.slot-title { font-weight: 600; font-size: 1.02rem; }
+.slot-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chip { padding: 1px 10px; font-size: .72rem; font-weight: 600; color: var(--g); background: color-mix(in srgb, var(--g) 14%, #fff); border-radius: var(--r-pill); }
+.chip.note { color: var(--muted); background: #eee; }
+.slot-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; font-size: .84rem; color: var(--muted); }
+.meta-item { display: inline-flex; align-items: center; gap: 5px; }
+.meta-item svg.lucide { width: 14px; height: 14px; }
+.slot-row.now .slot-card { box-shadow: 0 0 0 2px var(--brand), var(--shadow-2); }
+.now-tag { position: absolute; top: 10px; right: 10px; padding: 1px 10px; font-size: .7rem; font-weight: 600; color: #fff; background: var(--brand); border-radius: var(--r-pill); }
+
+/* ----- ตารางเต็มสัปดาห์ (จอกว้าง) ----- */
+.week-wrap { display: none; }
+.week-grid { display: grid; grid-template-columns: 112px repeat(5, minmax(0, 1fr)); gap: 6px; }
+.wg-head { padding: 10px; text-align: center; font-weight: 600; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); }
+.wg-head.today { color: #fff; background: var(--brand); border-color: var(--brand); }
+.wg-corner { color: var(--subtle); font-weight: 500; }
+.wg-time { display: flex; flex-direction: column; justify-content: center; font-size: .85rem; }
+.wg-time span { font-size: .7rem; color: var(--subtle); }
+.wg-cell { display: flex; border-radius: var(--r-md); }
+.wg-cell .slot-card { flex: 1; }
+.wg-cell.today { background: rgba(15, 108, 189, .06); }
+.wg-cell.now .slot-card { box-shadow: 0 0 0 2px var(--brand), var(--shadow-2); }
+.wg-lunch { grid-column: 2 / -1; padding: 6px; text-align: center; font-size: .82rem; color: var(--subtle); border: 1px dashed var(--border-strong); border-radius: var(--r-md); }
+.slot-card.compact { padding: 8px 10px; }
+.compact .slot-title { font-size: .95rem; }
+.compact .chip:not(.note) { display: none; }
+.compact .slot-tags { margin-top: 4px; }
+.compact .slot-meta { flex-direction: column; gap: 2px; margin-top: 4px; font-size: .78rem; }
+
+/* ----- คำอธิบายสี ----- */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: var(--s5); padding-top: var(--s4); border-top: 1px solid var(--border); font-size: .8rem; color: var(--muted); }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.legend-item::before { content: ""; width: 10px; height: 10px; background: var(--g); border-radius: 3px; }
+
+@media (min-width: 900px) {
+  .day-tabs, .day-title, .day-list { display: none; }
+  .week-wrap { display: block; }
+}
