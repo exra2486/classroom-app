@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ranking · งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ranking.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="เมนู"><i data-lucide="menu"></i></button>
+    <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+    <span id="userName" class="user-chip"></span>
+  </header>
+
+  <section class="container container-wide">
+    <div class="section-head">
+      <div>
+        <h2><i data-lucide="trophy"></i>Hall of Fame</h2>
+        <p class="rk-sub">หอเกียรติยศแห่งห้องเรียน</p>
+      </div>
+      <button id="adminBtn" class="rk-admin"><i data-lucide="shield"></i>ผู้ดูแล</button>
+    </div>
+
+    <div id="eventBanner" class="event-banner" hidden></div>
+
+    <div class="rk-seg" role="tablist">
+      <button class="active" data-f="all" role="tab">All Time</button>
+      <button data-f="month" role="tab">This Month</button>
+      <button data-f="week" role="tab">This Week</button>
+    </div>
+
+    <div id="podium" class="podium"></div>
+    <ul id="rankList" class="rank-list"></ul>
+    <p id="rkState" class="rk-state">กำลังโหลด...</p>
+
+    <p class="rk-note"><i data-lucide="info"></i><span>คะแนนเท่ากัน ผู้ที่ทำถึงคะแนนนั้นก่อนจะอยู่อันดับสูงกว่า · สัปดาห์เริ่มนับทุกวันจันทร์ เดือนเริ่มนับวันที่ 1 · Level และฉายาคิดจาก EXP สะสมทั้งหมด ส่วน King / Duke / Knight เปลี่ยนตามอันดับ</span></p>
+  </section>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="ranking.js"></script>
+</body>
+</html>

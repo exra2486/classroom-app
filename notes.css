@@ -16,3 +16,25 @@
 
 /* ปุ่มลบ: เทา แล้วเป็นแดงตอนชี้ */
 .post-actions .mini-btn:hover { color: var(--danger); background: var(--danger-bg); border-color: #f5c6ca; }
+
+/* ===== ไฟล์แนบ (ลิงก์) ===== */
+#modal .modal-box { max-width: 520px; }
+.file-field { display: flex; flex-direction: column; gap: 8px; }
+.file-label { display: flex; align-items: center; gap: 6px; font-size: .9rem; font-weight: 500; }
+.file-label svg.lucide { width: 16px; height: 16px; color: #038387; }
+.file-row { display: flex; gap: 8px; }
+.file-row .file-name { flex: 0 0 36%; min-width: 0; }
+.file-row .file-url { flex: 1; min-width: 0; }
+.file-hint { font-size: .76rem; line-height: 1.5; color: var(--subtle); }
+
+.file-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--s3); }
+.file-btn { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; padding: 7px 14px; font-size: .86rem; font-weight: 500; color: #02696d; text-decoration: none; background: #e0f4f4; border: 1px solid #b5e3e4; border-radius: var(--r-md); transition: background var(--ease), border-color var(--ease); }
+.file-btn:hover { background: #cdeeee; border-color: #038387; }
+.file-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-btn svg.lucide { width: 16px; height: 16px; }
+.file-ext { opacity: .6; }
+
+@media (max-width: 480px) {
+  .file-row { flex-direction: column; }
+  .file-row .file-name { flex: none; }
+}

@@ -1,6 +1,7 @@
 import {
   db, collection, onSnapshot, setupCommon, saveUser, getUser
 } from "./common.js";
+import { watchMonth, monthKey, dateKey } from "./tracker.js";
 
 // รหัสผ่านห้อง (เปลี่ยนได้ตรงนี้)
 const CLASS_PASSWORD = "C137";
@@ -17,6 +18,12 @@ function showHome() {
   welcome.style.display = "none";
   home.style.display = "block";
   setupCommon();
+
+  // จำนวนบัญชีที่เข้าวันนี้ (realtime) แสดงบนการ์ดสถิติ
+  watchMonth(db, monthKey(), function (days) {
+    const n = days ? (days[dateKey().slice(8)] || 0) : 0;
+    document.getElementById("statSummary").textContent = "วันนี้ " + n + " คน";
+  });
 
   // นับงานค้างของตัวเอง (realtime)
   onSnapshot(collection(db, "tasks"), function (snap) {

@@ -2,6 +2,8 @@ import {
   db, collection, doc, addDoc, deleteDoc, onSnapshot, setupCommon, getUser
 } from "./common.js";
 
+import { awardExp, expToast } from "./exp.js";
+
 if (!setupCommon()) throw new Error("no user");
 const me = getUser();
 
@@ -46,7 +48,9 @@ function render() {
     meta.className = "post-meta";
     meta.textContent = formatDate(n.date) + " · บันทึกโดย " + n.authorName;
 
-    li.append(title, text, meta);
+    li.append(title, text);
+    appendFiles(li, n);
+    li.appendChild(meta);
 
     { // ทุกคนลบได้
       const actions = document.createElement("div");
@@ -62,6 +66,46 @@ function render() {
     }
     list.appendChild(li);
   });
+}
+
+// ลิงก์ต้องเป็น https:// เท่านั้น (กันลิงก์อันตราย เช่น javascript:)
+function isHttps(u) {
+  try { return new URL(u).protocol === "https:"; } catch (e) { return false; }
+}
+
+// อ่านลิงก์ที่แนบจากฟอร์ม (คืน null ถ้ามีลิงก์ไม่ถูกต้อง)
+function readFiles() {
+  const out = [];
+  const rows = document.querySelectorAll(".file-row");
+  for (let i = 0; i < rows.length; i++) {
+    const url = rows[i].querySelector(".file-url").value.trim();
+    if (!url) continue;
+    if (!isHttps(url)) { alert("ลิงก์ไฟล์ที่ " + (i + 1) + " ไม่ถูกต้อง (ต้องขึ้นต้นด้วย https://)"); return null; }
+    out.push({ name: rows[i].querySelector(".file-name").value.trim() || "ไฟล์แนบ", url: url });
+  }
+  return out;
+}
+
+// วาดปุ่มเปิดไฟล์ในการ์ด (ตรวจ https ซ้ำตอนแสดงผล)
+function appendFiles(li, n) {
+  if (!Array.isArray(n.files)) return;
+  const box = document.createElement("div");
+  box.className = "file-list";
+  n.files.forEach(function (f) {
+    if (!f || !isHttps(f.url)) return;
+    const a = document.createElement("a");
+    a.className = "file-btn";
+    a.href = f.url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.innerHTML = '<i data-lucide="file-text"></i>';
+    const name = document.createElement("span");
+    name.textContent = f.name || "ไฟล์แนบ";
+    a.appendChild(name);
+    a.insertAdjacentHTML("beforeend", '<i data-lucide="external-link" class="file-ext"></i>');
+    box.appendChild(a);
+  });
+  if (box.children.length) li.appendChild(box);
 }
 
 onSnapshot(collection(db, "notes"), function (snap) {
@@ -85,13 +129,21 @@ $("noteForm").addEventListener("submit", async function (e) {
   e.preventDefault();
   const subject = $("subject").value.trim();
   if (!subject) return alert("กรุณาใส่ชื่อวิชาก่อนนะ");
-  await addDoc(collection(db, "notes"), {
+  const files = readFiles();
+  if (files === null) return;
+  // ไม่ให้ EXP ถ้าคำอธิบายสั้นไป (<10 ตัวอักษร) หรือซ้ำ (วิชา+วันที่+คาบ)
+  const dateV = $("noteDate").value, per = Number($("period").value), txt = $("noteText").value.trim();
+  const dup = notes.some(function (n) { return n.date === dateV && n.period === per && String(n.subject).trim().toLowerCase() === subject.toLowerCase(); });
+  const ref = await addDoc(collection(db, "notes"), {
     subject: subject,
     date: $("noteDate").value,
     period: Number($("period").value),
     text: $("noteText").value.trim(),
     authorName: me.name,
-    ownerId: me.id
+    ownerId: me.id,
+    files: files
   });
   modal.classList.add("hidden");
+  if (dup || txt.length < 10) expToast("ไม่ผ่านเงื่อนไข (คำอธิบายสั้นเกินไปหรือซ้ำ) จึงไม่ได้รับ EXP", "info");
+  else awardExp(db, me, "note", ref.id);
 });

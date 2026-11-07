@@ -4,6 +4,8 @@ import {
 } from "./common.js";
 import { arrayRemove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+import { awardExp } from "./exp.js";
+
 if (!setupCommon()) throw new Error("no user");
 const me = getUser();
 
@@ -111,11 +113,12 @@ function buildComments(p, comments) {
   const send = btn("ส่ง", "btn-primary", function () {
     const t = input.value.trim();
     if (!t) return;
+    const cid = crypto.randomUUID();
     updateDoc(doc(db, "announcements", p.id), {
       comments: arrayUnion({
-        id: crypto.randomUUID(), ownerId: me.id, name: me.name, text: t, at: Date.now()
+        id: cid, ownerId: me.id, name: me.name, text: t, at: Date.now()
       })
-    });
+    }).then(function () { if (t.length >= 10) awardExp(db, me, "comment", cid); });
   });
   input.addEventListener("keydown", function (e) { if (e.key === "Enter") send.click(); });
   form.append(input, send);

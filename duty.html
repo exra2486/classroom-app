@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duty Management · งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="duty.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="เมนู"><i data-lucide="menu"></i></button>
+    <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+    <span id="userName" class="user-chip"></span>
+  </header>
+
+  <section class="container container-wide">
+    <div class="section-head">
+      <div>
+        <h2><i data-lucide="clipboard-check"></i>Duty Management</h2>
+        <p class="duty-sub">ระบบจัดการเวรทำความสะอาดห้องเรียน</p>
+      </div>
+      <button id="adminBtn" class="duty-admin"><i data-lucide="shield"></i><span>ผู้ดูแล</span></button>
+    </div>
+
+    <div id="dutyTabs" class="duty-tabs" role="tablist"></div>
+    <div id="dutyPanel"></div>
+    <p id="dutyState" class="dempty">กำลังโหลด...</p>
+  </section>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="duty.js"></script>
+</body>
+</html>

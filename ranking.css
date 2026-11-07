@@ -1,0 +1,69 @@
+/* ===== หน้า Ranking / Hall of Fame (โหลดต่อจาก style.css) ===== */
+.section-head h2 svg.lucide { width: 36px; height: 36px; padding: 8px; color: #b8900a; background: #fbf0c8; border-radius: 10px; }
+.rk-sub { margin: 2px 0 0 44px; font-size: .85rem; color: var(--muted); }
+.rk-admin { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font: inherit; font-size: .82rem; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-pill); cursor: pointer; transition: all var(--ease); }
+.rk-admin:hover { color: var(--brand); border-color: var(--brand); }
+.rk-admin svg.lucide { width: 14px; height: 14px; }
+
+.event-banner { display: flex; align-items: center; gap: 8px; margin-bottom: var(--s3); padding: 10px 14px; font-size: .88rem; font-weight: 500; color: #fff; background: #0b4f8a; border-radius: var(--r-md); }
+.event-banner[hidden] { display: none; }
+
+.rk-seg { display: inline-flex; margin-bottom: var(--s4); padding: 3px; background: #f0f0f0; border-radius: 10px; }
+.rk-seg button { padding: 6px 16px; font: inherit; font-size: .88rem; font-weight: 500; color: var(--muted); background: none; border: 0; border-radius: 8px; cursor: pointer; transition: all var(--ease); }
+.rk-seg button.active { color: var(--brand); background: #fff; box-shadow: var(--shadow-1); }
+
+/* ----- Top 3 ----- */
+.podium { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: var(--s3); align-items: end; margin: 0 0 var(--s4); }
+.pod { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 10px; text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow-1); transition: transform var(--ease), box-shadow var(--ease); }
+.pod:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.pod-1 { padding: 24px 10px 22px; background: #fffbea; border-color: #f0d98a; box-shadow: 0 8px 24px rgba(212, 160, 23, .18); }
+.pod-2 { background: #f8f9fb; border-color: #d9dde4; }
+.pod-3 { background: #fdf6f0; border-color: #ecd3c0; }
+.pod.me { outline: 2px solid var(--brand); outline-offset: 2px; }
+.pod-top svg.lucide { width: 26px; height: 26px; }
+.pod-1 .pod-top svg.lucide { width: 34px; height: 34px; }
+.gold .pod-top { color: #d4a017; } .silver .pod-top { color: #8a94a6; } .bronze .pod-top { color: #b4693b; }
+
+.rk-avatar { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; font-size: 1.1rem; font-weight: 600; color: #fff; border-radius: 50%; }
+.pod-1 .rk-avatar { width: 68px; height: 68px; font-size: 1.6rem; box-shadow: 0 0 0 3px #fff, 0 0 0 6px #d4a017; }
+.pod-2 .rk-avatar { box-shadow: 0 0 0 3px #fff, 0 0 0 5px #8a94a6; }
+.pod-3 .rk-avatar { box-shadow: 0 0 0 3px #fff, 0 0 0 5px #b4693b; }
+.pod-badge { margin-top: 4px; padding: 1px 12px; font-size: .68rem; font-weight: 700; letter-spacing: .12em; color: #fff; border-radius: var(--r-pill); }
+.gold .pod-badge { background: #d4a017; } .silver .pod-badge { background: #8a94a6; } .bronze .pod-badge { background: #b4693b; }
+.pod-name { max-width: 100%; overflow: hidden; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.pod-1 .pod-name { font-size: 1.1rem; }
+.pod-meta { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: .78rem; color: var(--muted); }
+.pod-exp { font-size: .9rem; font-weight: 600; }
+.pod-empty { min-height: 130px; justify-content: center; color: var(--subtle); background: transparent; border-style: dashed; box-shadow: none; }
+
+/* ----- อันดับ 4 ลงไป ----- */
+.rank-list { list-style: none; display: grid; gap: 8px; }
+.rk-row { display: grid; grid-template-columns: 32px 40px 1fr auto; align-items: center; gap: 12px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); transition: all var(--ease); }
+.rk-row:hover { border-color: #b6d4f0; box-shadow: var(--shadow-2); }
+.rk-row.me { background: var(--brand-soft); border-color: var(--brand); }
+.rk-pos { font-weight: 600; text-align: center; color: var(--muted); }
+.rk-who { min-width: 0; }
+.rk-name { overflow: hidden; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.rk-me { margin-left: 8px; padding: 0 8px; font-size: .68rem; color: #fff; background: var(--brand); border-radius: var(--r-pill); }
+.rk-lvline { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: .78rem; color: var(--muted); }
+.rk-title { padding: 1px 10px; font-size: .72rem; font-weight: 600; white-space: nowrap; border-radius: var(--r-pill); }
+.rk-exp { font-weight: 600; text-align: right; }
+.rk-exp small { display: block; font-size: .7rem; font-weight: 400; color: var(--subtle); }
+
+.rk-state { padding: 48px 16px; text-align: center; color: var(--subtle); }
+.rk-state[hidden] { display: none; }
+.rk-note { display: flex; gap: 6px; margin-top: var(--s5); padding-top: var(--s3); font-size: .78rem; color: var(--subtle); border-top: 1px solid var(--border); }
+.rk-note svg.lucide { width: 14px; height: 14px; margin-top: 3px; }
+
+/* มือถือ: ยังเรียง 2-1-3 แต่กะทัดรัดขึ้น */
+@media (max-width: 560px) {
+  .podium { gap: 6px; }
+  .pod { padding: 12px 4px; }
+  .pod-1 { padding: 18px 4px 16px; }
+  .rk-avatar { width: 38px; height: 38px; font-size: .95rem; }
+  .pod-1 .rk-avatar { width: 54px; height: 54px; font-size: 1.3rem; }
+  .pod-name { font-size: .85rem; } .pod-1 .pod-name { font-size: .95rem; }
+  .pod-meta .rk-title { padding: 0 6px; font-size: .62rem; }
+  .rk-row { grid-template-columns: 26px 36px 1fr auto; gap: 8px; padding: 10px; }
+  .rk-sub { margin-left: 0; }
+}

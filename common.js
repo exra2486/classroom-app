@@ -4,6 +4,8 @@ import {
   onSnapshot, arrayUnion
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { firebaseConfig } from "./firebase-config.js";
+import { initExpUI, renamePlayer, claimDaily } from "./exp.js";
+import { trackVisit, watchMonth, dateKey, monthKey } from "./tracker.js";
 
 // ===== ฐานข้อมูล (หน้าอื่นเรียกใช้ผ่าน import) =====
 export const db = getFirestore(initializeApp(firebaseConfig));
@@ -43,6 +45,9 @@ export function setupCommon() {
   if (chip) chip.textContent = user.name;
 
   buildSidebar(user);
+  initExpUI(db, user);
+  claimDaily(db, user); // +25 EXP เข้าเว็บรายวัน
+  trackVisit(db, user.name); // นับผู้เข้าใช้วันนี้ (ไม่รอ ไม่บล็อกหน้าเว็บ)
   return true;
 }
 
@@ -76,7 +81,10 @@ function buildSidebar(user) {
   nav.className = "sidebar-nav";
   [["index.html", "หน้าแรก", "house"], ["homework.html", "การบ้าน", "clipboard-list"],
    ["announcements.html", "ประกาศ", "megaphone"], ["notes.html", "สิ่งที่เรียน", "notebook-pen"],
-   ["timetable.html", "ตารางเรียน", "calendar-days"]
+   ["timetable.html", "ตารางเรียน", "calendar-days"],
+   ["stats.html", "สถิติการเข้าใช้", "chart-column"],
+   ["ranking.html", "Ranking", "trophy"],
+   ["duty.html", "Duty Management", "clipboard-check"]
   ].forEach(function (item) {
     const a = document.createElement("a");
     a.href = item[0];
@@ -88,6 +96,16 @@ function buildSidebar(user) {
 
   const title = document.createElement("h3");
   title.textContent = "สมาชิก";
+  // ป้าย "วันนี้ (N คน)" ข้างคำว่าสมาชิก กดแล้วไปหน้าสถิติ
+  const todayPill = document.createElement("a");
+  todayPill.className = "today-pill";
+  todayPill.href = "stats.html";
+  todayPill.title = "ดูสถิติการเข้าใช้";
+  todayPill.textContent = "วันนี้ (– คน)";
+  const memberHead = document.createElement("div");
+  memberHead.className = "member-head";
+  memberHead.append(title, todayPill);
+
   const list = document.createElement("ul");
   list.className = "member-list";
 
@@ -99,7 +117,7 @@ function buildSidebar(user) {
   logout.className = "settings-btn logout-btn";
   logout.innerHTML = '<i data-lucide="log-out"></i>ออกจากระบบ';
 
-  side.append(head, nav, title, list, settings, logout);
+  side.append(head, nav, memberHead, list, settings, logout);
   overlay.appendChild(side);
   document.body.appendChild(overlay);
 
@@ -120,6 +138,12 @@ function buildSidebar(user) {
         li.append(av, nm);
         list.appendChild(li);
       });
+  });
+
+  // จำนวนบัญชีที่เข้าวันนี้ (realtime)
+  watchMonth(db, monthKey(), function (days) {
+    const n = days ? (days[dateKey().slice(8)] || 0) : 0;
+    todayPill.textContent = "วันนี้ (" + n + " คน)";
   });
 
   document.getElementById("menuBtn").addEventListener("click", function () {
@@ -150,6 +174,7 @@ function buildSidebar(user) {
   settings.addEventListener("click", async function () {
     const n = prompt("ชื่อเล่นใหม่:", user.name);
     if (n && n.trim() !== "") {
+      await renamePlayer(db, user.name, n.trim());
       await Promise.race([
         saveUser(n.trim()),
         new Promise(function (r) { setTimeout(r, 3000); })

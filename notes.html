@@ -44,6 +44,22 @@
       <label>เรียนอะไรไปบ้าง
         <textarea id="noteText" rows="4" placeholder="สรุปสิ่งที่เรียน..."></textarea>
       </label>
+      <div class="file-field">
+        <span class="file-label"><i data-lucide="paperclip"></i>แนบไฟล์ (ลิงก์ Google Drive / OneDrive) ไม่บังคับ</span>
+        <div class="file-row">
+          <input class="file-name" type="text" maxlength="60" placeholder="ชื่อไฟล์ (ไม่บังคับ)">
+          <input class="file-url" type="url" maxlength="500" placeholder="ลิงก์ https://...">
+        </div>
+        <div class="file-row">
+          <input class="file-name" type="text" maxlength="60" placeholder="ชื่อไฟล์ (ไม่บังคับ)">
+          <input class="file-url" type="url" maxlength="500" placeholder="ลิงก์ https://...">
+        </div>
+        <div class="file-row">
+          <input class="file-name" type="text" maxlength="60" placeholder="ชื่อไฟล์ (ไม่บังคับ)">
+          <input class="file-url" type="url" maxlength="500" placeholder="ลิงก์ https://...">
+        </div>
+        <p class="file-hint">อัปไฟล์ขึ้น Drive ก่อน แล้วคลิกขวาที่ไฟล์ &gt; แชร์ &gt; เปลี่ยนเป็น "ทุกคนที่มีลิงก์" &gt; คัดลอกลิงก์มาวาง (ถ้าไม่เปลี่ยน เพื่อนจะเปิดไฟล์ไม่ได้)</p>
+      </div>
       <div class="actions">
         <button type="button" id="cancelBtn" class="btn-ghost">ยกเลิก</button>
         <button type="submit" class="btn-primary">บันทึก</button>

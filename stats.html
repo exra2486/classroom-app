@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>สถิติการเข้าใช้ · งานห้องเรา</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="เมนู"><i data-lucide="menu"></i></button>
+    <h1 class="brand"><span class="brand-mark"><i data-lucide="graduation-cap"></i></span>งานห้องเรา</h1>
+    <span id="userName" class="user-chip"></span>
+  </header>
+
+  <section class="container container-wide">
+    <div class="section-head">
+      <h2><i data-lucide="chart-column"></i>สถิติการเข้าใช้</h2>
+    </div>
+
+    <!-- การ์ดสรุป -->
+    <div class="tiles">
+      <div class="tile accent">
+        <div class="tile-label">วันนี้</div>
+        <div class="tile-value"><span id="sumToday">–</span><small>คน</small></div>
+        <div class="tile-sub">บัญชีที่เข้าใช้</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">เมื่อวาน</div>
+        <div class="tile-value"><span id="sumYesterday">–</span><small>คน</small></div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">เฉลี่ย 7 วันที่ผ่านมา</div>
+        <div class="tile-value"><span id="sumAvg">–</span><small>คน/วัน</small></div>
+        <div class="tile-sub">ไม่นับวันก่อนเริ่มระบบ</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">สูงสุดในเดือนนี้</div>
+        <div class="tile-value"><span id="sumMax">–</span><small>คน</small></div>
+        <div class="tile-sub" id="sumMaxSub">&nbsp;</div>
+      </div>
+    </div>
+
+    <!-- กราฟ -->
+    <div class="chart-card">
+      <div class="chart-head">
+        <div class="seg" role="tablist">
+          <button id="modeWeek" class="active" role="tab">รายสัปดาห์</button>
+          <button id="modeMonth" role="tab">รายเดือน</button>
+        </div>
+        <div class="range-nav">
+          <button id="prevBtn" class="nav-btn" aria-label="ก่อนหน้า"><i data-lucide="chevron-left"></i></button>
+          <span id="rangeLabel" class="range-label"></span>
+          <button id="nextBtn" class="nav-btn" aria-label="ถัดไป"><i data-lucide="chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div id="chart" class="chart week"></div>
+
+      <p id="emptyHint" class="chart-hint" hidden>ยังไม่มีข้อมูล ระบบเริ่มนับตั้งแต่วันที่เปิดใช้งาน กราฟจะค่อยๆ เต็มขึ้นเอง</p>
+      <p class="chart-note"><i data-lucide="info"></i><span>นับจำนวนบัญชีที่เข้าใช้ บัญชีละ 1 ครั้งต่อวัน ไม่ว่าจะเปิดกี่หน้าหรือกี่ครั้ง</span></p>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="stats.js"></script>
+</body>
+</html>

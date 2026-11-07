@@ -3,6 +3,8 @@ import {
   setupCommon, getUser
 } from "./common.js";
 
+import { awardExp, expToast } from "./exp.js";
+
 if (!setupCommon()) throw new Error("no user");
 const me = getUser();
 
@@ -183,7 +185,9 @@ taskForm.addEventListener("submit", async function (e) {
   if (!title) return alert("กรุณาใส่ชื่องานก่อนนะ");
   if (dueDate < assignedDate) return alert("วันส่งต้องไม่ก่อนวันที่สั่งนะ");
 
-  await addDoc(collection(db, "tasks"), {
+  // ไม่ให้ EXP ถ้าชื่องานสั้นเกินไป หรือซ้ำ (ชื่อ+วันส่ง) กับงานที่มีอยู่
+  const dup = tasks.some(function (t) { return t.dueDate === dueDate && String(t.title).trim().toLowerCase() === title.toLowerCase(); });
+  const ref = await addDoc(collection(db, "tasks"), {
     title: title,
     assignedDate: assignedDate,
     dueDate: dueDate,
@@ -194,6 +198,8 @@ taskForm.addEventListener("submit", async function (e) {
     doneBy: []
   });
   modal.classList.add("hidden");
+  if (dup || title.length < 3) expToast("ไม่ผ่านเงื่อนไข (ชื่อสั้นเกินไปหรือซ้ำ) จึงไม่ได้รับ EXP", "info");
+  else awardExp(db, me, "homework", ref.id);
 });
 
 // ===== หน้าต่างยืนยัน =====
