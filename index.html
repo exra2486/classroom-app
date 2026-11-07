@@ -7,6 +7,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <link rel="manifest" href="./manifest.webmanifest">
+
+<meta name="theme-color" content="#0f6cbd">
+
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+
+<link rel="apple-touch-icon" href="./icon-192.png">
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js")
+        .then((registration) => {
+          console.log("Service Worker registered:", registration.scope);
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    });
+  }
+</script>
+
 </head>
 <body data-page="home">
 
