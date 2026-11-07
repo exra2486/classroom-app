@@ -1,0 +1,32 @@
+/* ===== หน้าประกาศ: โทนฟ้า + ส้ม + แดง (โหลดต่อจาก style.css) ===== */
+
+/* ไอคอนหัวข้อเป็นกรอบสีส้ม */
+.section-head h2 svg.lucide {
+  width: 36px; height: 36px; padding: 8px;
+  color: #ea6a1f; background: #fff1e6; border-radius: 10px;
+}
+
+/* ประกาศปกติ: แถบฟ้าด้านซ้าย */
+.post-card { border-left: 4px solid var(--brand); }
+
+/* ประกาศที่ปักหมุด: แดง */
+.post-card.pinned {
+  border-color: #f1b8bd;
+  border-left-color: var(--danger-line);
+  background: #fff6f6;
+  box-shadow: 0 2px 10px rgba(197, 15, 31, .12);
+}
+.post-card.pinned .post-title { color: var(--danger); }
+.pin-tag { color: var(--danger); background: #fde2e4; }
+
+/* ปุ่มใต้ประกาศ: ตอบกลับ = ฟ้า, ปักหมุด = แดง, ลบ = เทา (แดงตอนชี้) */
+.post-actions .mini-btn:first-child { color: var(--brand); background: var(--brand-soft); border-color: #c7dff5; }
+.post-actions .mini-btn:first-child:hover { background: #d9eafa; }
+.post-actions .mini-btn:nth-child(2) { color: var(--danger); background: #fff0f1; border-color: #f5c6ca; }
+.post-actions .mini-btn:nth-child(2):hover { background: #fde2e4; }
+.post-actions .mini-btn:nth-child(3):hover { color: var(--danger); background: var(--danger-bg); border-color: #f5c6ca; }
+
+/* คอมเมนต์: กล่องฟ้าอ่อน ชื่อคนตอบสีฟ้า */
+.comments { border-top-color: #d6e6f7; }
+.comment { margin-bottom: 6px; padding: 8px 12px; background: #f3f8fd; border-radius: var(--r-md); }
+.comment b { color: var(--brand); }
