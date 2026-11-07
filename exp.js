@@ -7,12 +7,12 @@ import { nameKey, dateKey } from "./tracker.js";
 // ===== ตั้งค่า (แก้ตรงนี้) =====
 // cap = จำนวนครั้งสูงสุดต่อวันที่ได้ EXP (กันปั๊มคะแนน)
 export const REWARDS = {
-  homework: { exp: 25, cap: 3, label: "เพิ่มการบ้าน" },
-  note: { exp: 30, cap: 3, label: "เพิ่มสิ่งที่เรียน" },
-  comment: { exp: 3, cap: 5, label: "แสดงความคิดเห็น" },
-  daily: { exp: 25, cap: 1, label: "เข้าใช้งานประจำวัน" },
-  duty: { exp: 15, cap: 1, label: "ส่งรายงานเวร" },
-  inspect: { exp: 15, cap: 1, label: "ตรวจสอบห้องเรียน" }
+  homework: { exp: 40, cap: 3, label: "เพิ่มการบ้าน" },
+  note: { exp: 35, cap: 3, label: "เพิ่มสิ่งที่เรียน" },
+  comment: { exp: 20, cap: 5, label: "แสดงความคิดเห็น" },
+  daily: { exp: 40, cap: 1, label: "เข้าใช้งานประจำวัน" },
+  duty: { exp: 30, cap: 1, label: "ส่งรายงานเวร" },
+  inspect: { exp: 30, cap: 1, label: "ตรวจสอบห้องเรียน" }
 };
 export const ADMIN_PASSWORD = "admin-C137"; // *** เปลี่ยนก่อนใช้จริง ***
 
